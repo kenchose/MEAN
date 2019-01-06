@@ -1,0 +1,8 @@
+1. 'world' : wrong- undefined, undefined
+2. magnet 
+3. super cool 
+4. chicken, half chicken
+5. undefined, fish, undefined : wrong - mean is not a function
+6. rock, randb, disco : wrong - undefined, rock, randb, disco, undefined
+7. undefined, undefined, burbank, undefined : wrong console.log(dojo), san jose, seattle, burbank, san jose, undefined
+
