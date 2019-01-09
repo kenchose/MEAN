@@ -1,0 +1,1 @@
+Use Embedded Javascript to familiarize yourself how to route and render templates with the help of Express showing where the views directory is. Keep an index.html within the static folder as the root route in case it nothing matches the GET route.
