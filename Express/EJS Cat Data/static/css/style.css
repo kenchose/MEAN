@@ -1,0 +1,30 @@
+img {
+    width:540px;
+    height: auto;
+    border-radius: 50%;
+    margin: 2em auto;
+}
+
+.ejs {
+    background-color: #EE82EE;
+    margin: .5em;
+}
+
+#kitty {
+    width: 320px;
+    height: auto;
+    border-radius: 50%;
+    margin: 2em auto;
+}
+
+.detail1 {
+    background-color: lightseagreen;
+}
+
+.detail2 {
+    background-color: lightskyblue;
+}
+
+.detail3 {
+    background-color: lightslategray;
+}
