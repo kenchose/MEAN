@@ -1,0 +1,17 @@
+.counter {
+    text-align: center;
+    padding: 25% 0;
+}
+h1 {
+    color: red;
+}
+a {
+    color: white;
+ }
+a:hover {
+   color:white;
+   text-decoration:none;
+}
+form {
+    display: inline-block
+}
