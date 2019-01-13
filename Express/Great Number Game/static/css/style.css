@@ -1,0 +1,34 @@
+.container {
+    padding-top: 10%;
+}
+.guess-results {
+    height: 100px;
+    width: 100px;
+    background-color: red
+}
+
+.start {
+    display: hidden;
+    height: 0px;
+    width: 0px;
+}
+
+#hidden {
+    display: none
+}
+
+.incorrect {
+    background-color: red;
+    height: 200px;
+    width: 180px;
+}
+
+.correct {
+    background-color: green;
+    height: 200px;
+    width: 180px;
+}
+
+.msg {
+    padding-top: 40%;
+}
