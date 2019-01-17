@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type='text/javascript' src="/socket.io/socket.io.js"></script>
+    <script type='text/javascript'>
+        $(document).ready(() => {
+            let socket = io(); //triggers our connection to the server
+            $('#survey_form').submit((e) => {
+                e.preventDefault();
+                //on submit form will be emitted to server, socket.on('form_submission')
+                socket.emit('form_submission', {
+                    name: $('#name').val(),
+                    location: $('#location').val(),
+                    language: $('#language').val(),
+                    comment: $('#comment').val()
+                })
+            })
+            socket.on('greeting', (data) => {
+                console.log(data.msg);
+                socket.emit('thankyou', {msg: 'Thank you for connecting me! -Client'})
+            })
+            socket.on('server_emit', (data) => {
+                $('#message').html('You emitted the following information to the server: ' + JSON.stringify(data.response))
+                
+                // Second way to do it
+                // $('#message').html(`You emitted the following information to the server: Name: ${data.name}, Location: ${data.location}, Language: ${data.language}, Comment: ${data.comment}`)
+            })
+            socket.on('random_number', (data) => {
+                $('#number').html('Your lucky number emitted by the server is ' + JSON.stringify(data.number))
+            })
+        })
+    </script>
+    <title>Socket Survey Form</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-6 form-info">
+                <div id='message'></div>
+                <div id="number"></div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col">
+                <form id='survey_form'>
+                    <div class="row form-group">
+                        <label for="name" class='col-2 control-label'>Your Name:</label>
+                        <div class="col-6">
+                            <input type="text" class='form-control' name='name' id='name'>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label for="dojo" class='col-2 control-label'>Dojo Location:</label>
+                        <div class="col-6">
+                            <select name="location" class='form-control' id='location'>
+                                <option>Silicon Valley</option>
+                                <option>Washington DC</option>
+                                <option>Seattle</option>
+                                <option>San Jose</option>
+                                <option>Burbank</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label for="language" class='col-2 col-control-label'>Favorite Language:</label>
+                        <div class="col-6">
+                            <select name="language" class='form-control' id='language'>
+                                <option>Node</option>
+                                <option>Javascript</option>
+                                <option>Python</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label for="comment" class='col-2 col-conrol-label'>Comment (optional):</label>
+                        <div class="col-6">
+                            <textarea class='form-control' name="comment" cols="30" rows="10" id='comment'></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <button id='submit_form' type="submit" class='btn btn-primary float-right'>Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
