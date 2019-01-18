@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type='text/javascript' src='/socket.io/socket.io.js'></script>
+    <script type='text/javascript'>
+        $(document).ready(() => {
+            let socket = io();
+            $('#add').click((e) => {
+                e.preventDefault()
+                socket.emit('add_count')
+            })
+            $('#reset').click((e) => {
+                e.preventDefault();
+                socket.emit('restart')
+            })
+            socket.on('update_count', (data) => {
+                $('#update_count').html(data.count)
+            })
+        })
+    </script>
+    <title>Epic Number Game</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row mt-4">
+            <div class="col text-center">
+                <h2>The button has been pushed <span id='update_count'>0</span> times(s)</h2>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col text-center">
+                <h3>Push the button to update the count!</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+                <button id='add' class='btn btn-primary btn-lg mt-5'><h1>Push the epic button</h1></button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col mt-5">
+                <button id='reset' class='btn btn-danger float-right'><h4>Reset</h4></button>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+</body>
+</html>
