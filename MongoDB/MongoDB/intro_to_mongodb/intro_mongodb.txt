@@ -1,0 +1,115 @@
+MongoDB operator documentation: http://docs.mongodb.org/manual/reference/operator/
+db - Check which database you are one
+showCollections - Show collections within the database
+pretty() - Add the pretty method for readable code
+$set - false=upsert and true=multi
+
+1. Create a database called 'my_first_db'.
+    - The 'use' command creates new databases if the name of the db is not created
+    - The new db will not show using show dbs until you've inserted at least one colelction
+    code: use my_first_db
+
+
+2. Create students collection.
+    code: db.createCollection('students')
+
+
+3. Each document you insert into this collection should have the following format: ({name: STRING, home_state: STRING, lucky_number: NUMBER, birthday: {month: NUMBER, day: NUMBER, year: NUMBER}})
+    - Terminal shows 'WriteResult({ "nInserted" : 1 })' when successfull
+
+    code: inserting single documents: db.students.insert({name: 'Kenny', home_state: 'California', lucky_number: 7, birthday: {month: 2, day: 19, year: 1986}})
+
+
+4. Create 5 students with the appropriate info.
+    - Show all documents/contents in collection: db.<collection_name>.find().pretty()
+    - To insert MULTIPLE DOCUMENTS use the db.<collection_name>.insertMany() method
+    - code example: example inserting multiple documents: db.students.insertMany([{name: 'Vy', home_state: 'Maryland', lucky_number: 8, birthday: {month: 12, day: 23, year: 1983}},{name: 'Abe', home_state: 'Ohio', lucky_number: 77, birthday: {month: 2, day: 16, year: 1976}}])
+
+
+5. Get all students.
+    code: db.<collection_name>.find().pretty()
+    example: db.studetnts.find().pretty()
+
+
+6. Retrieve all students who are from California (San Jose Dojo) or Washington (Seattle Dojo).
+    code: db.<collection_name>.find({field: value})
+    example: db.students.find({home_state: 'California'}).pretty()
+
+
+7. Get all students whose lucky number is:
+    a. greater than 3
+        code: db.<collection_name>.find({field: {$<operator>: value}}).pretty()
+        example: db.students.find({lucky_number: {$gt: 3}}).pretty()
+    b. less than or equal to 10
+        code: db.<collection_name>.find({field: {$<operator>: value}}).pretty()
+        example: db.students.find({lucky_number: {$lte: 3}}).pretty()
+    c. between 1 and 9 (inclusive)
+        code: db.<collection_name>.find({field: {$<operator: value, $<operator2>: value}})
+        example: db.students.find({lucky_number: {$gte: 1, $lte: 9}})
+
+
+8. Add a field to each student collection called 'interests' that is an ARRAY.  It should contain the following entries: 'coding', 'brunch', 'MongoDB'. Do this in ONE operation.
+    code: db.<collection_name>.update({filed: value}}, {$set: {<field>: [value1, value2, ....]}})
+    code: db.students.update({name: 'Kenny'}, {$set: {interests: ['coding', 'brunch', 'MongoDB']}})
+
+
+9. Add some unique interests for each particular student into each of their interest arrays. 
+    ADD MANY VALUESS (use push with each instead of the pushAll methods)
+    code: db.<collection_name>.update({filter}}, {$push: {<field>:{$each: [value1, value2, ....]}})
+    example: db.students.update({name:'Nichole'}, {$push:{interests:{$each:['eating', 'sleeping']}}})
+
+
+10. Add the interest 'taxes' into someone's interest array.
+    code: db.<collection>.update({<query>}, {$push:{<field>:{$each:[var]}})
+
+
+11. Remove the 'taxes' interest you just added.
+    code: db.<collection>.update({<query>}, {$pull:{<field>:var}})
+    example: db.students.update({name:'Kenny'}, {$pull:{interests:'running'}})
+                    OR
+    code: db.<collection>.update({<query>}, {$pull:{<field>:{$in:[var1, var2...]}}})
+    example: db.students.update({name:'Dan'}, {$pull:{interests:{$in:['workout', 'school']}}})
+                    OR 
+    code: db.<collection>.update({<query>}, {$pop:{<field>:(num)}})
+    example: db.students.update({name:'Kenny'}, {$pop:{interests:(1)}})
+    Use 1 for the last element and -1 for the first element
+
+
+12. Remove all students who are from California.
+    code: db.<collection>.deleteMany({<field>:<value>})
+    example: db.students.deleteMany({home_state:'California'})
+
+
+13. Remove a student by name. 
+    code: db.<collection>.deleteOne({<field>:<value>})
+    example: db.students.deleteOne({name:'Abe'})
+
+
+14. Remove a student whose lucky number is greater than 5 (JUST ONE)
+    code: db.<collection>.deleteOne({<field>:{$gte: num}})
+    example: db.students.deleteOne({lucky_number:{$gte: 5}})
+
+
+15. Add a field to each student collection called 'number_of_belts' and set it to 0.
+    code: db.students.update({}, {$set:{number_of_belts:0}},false,true) false=upsert true=multi
+
+16. Increment this field by 1 for all students in Washington (Seattle Dojo).
+    code: db.students.update({home_state:'Ohio'}, {$inc:{number_of_belts:1}},false, true)
+
+
+17. Rename the 'number_of_belts' field to 'belts_earned'
+    db.students.update({}, {$rename:{naumber_of_belts:'belts_earned'}}, false, true)
+
+18. Remove the 'lucky_number' field.
+    db.students.update({}, {$rename:{lucky_number:'favorite number'}}, false, true)
+
+
+19. Add a 'updated_on' field, and set the value as the current date.
+    let myDate = new Date()
+    let date = myDate.toString()
+    db.students.update({name:'Vy'}, {$set:{updated_on:date}})
+
+    db.students.update({name:'Vy'}, {$set:{updated_on:new Date()}})
+
+    db.students.update({name:'Abe'}, {$currentDate:{updated_on:{$type:'date'}}})
+
