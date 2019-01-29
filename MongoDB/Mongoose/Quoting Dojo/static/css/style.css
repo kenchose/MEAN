@@ -1,0 +1,12 @@
+.container {
+    margin-top: 2em;
+}
+.row {
+    margin: 1em;
+} 
+.btn-info a{
+    color:white;
+}
+a:hover {
+ text-decoration: none;
+}
