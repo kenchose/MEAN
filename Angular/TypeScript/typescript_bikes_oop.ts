@@ -7,7 +7,7 @@ class Bike {
         this.max_speed = max_speed;
         this.miles = 0
     }
-    displayInfo(): any {
+    displayInfo(): any { 
         console.log(`Price: ${this.price}, Max Speed: ${this.max_speed}, Miles: ${this.miles}`);
         return this
     }
