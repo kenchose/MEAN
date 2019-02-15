@@ -1,0 +1,16 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Restful Tasks API
+  </h1>
+</div>
+<div style='text-align: center'>
+  <h2>All The Tasks</h2>
+</div>
+<div *ngFor="let task of task">
+  <ul>
+    <li>{{task.title}}: {{task.description}}</li>
+  </ul>
+</div>
+
+<router-outlet></router-outlet>
