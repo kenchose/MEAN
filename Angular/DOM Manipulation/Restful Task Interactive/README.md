@@ -1,9 +1,13 @@
 # Objective
 
 Have an Angular app make an http request to an API when the user clicks a button
+
 Alter the DOM based on user interaction without refreshing the page
+
 Add a button so the user may trigger the fetch to get all tasks
+
 Display the fetched tasks in the html
+
 Provide a button for each task to display its details
 
 ## Development server
