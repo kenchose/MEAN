@@ -1,0 +1,24 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Restful Tasks API
+  </h1>
+</div>
+<div style='text-align: center'>
+  <h2>All The Tasks</h2>
+</div>
+<div>
+  <button (click)="componentGetTasksFromService()">Get All Tasks</button>
+  <p *ngFor="let task of task">{{task.title}} <button (click)="componentGetSingleTask(task._id)">Show</button></p>
+
+  <div *ngIf='showing==true'>
+      <h2>This is the show</h2>
+      <p>{{showTask.title}} {{showTask.description}}</p>
+  </div>
+</div>
+<!-- <button (click)="onButtonClick()" >Click me!</button> -->
+<!-- <button (click)="onButtonClickEvent()">Click me!</button> -->
+<!-- <button (click)="onButtonClickParam(5)">Click me!</button> -->
+<!-- <button (click)="onButtonClickParams(5, 'hello')">Click me!</button> -->
+<!-- <button (click)="onButtonClickEvent($event)">Click me!</button> -->
+<router-outlet></router-outlet>
