@@ -1,0 +1,30 @@
+<h1>Restful CRUD Tasks</h1>
+<form (submit)='componentToPost()'>
+    <p>{{newTask | json}}</p> <!--to see two-way binding in action-->
+    <p>Title: <input type="text" name='newTask.title' [(ngModel)]="newTask.title"></p> <!--don't forget to import and register formsModule in our app.module so that two-way binding is possible-->
+    <p>Description: <input type="text" name='newTask.description' [(ngModel)]="newTask.description"></p>
+    <input type="submit" value="Add Task">
+</form>
+<button (click)="componentGetTasksFromService()">Get All Tasks</button>
+
+<!--how do we pull information we put into the input? we use ng model, which is called a two-way binding: whatever we change in one, we will also change in the other-->
+<div id='edit' *ngIf='edit==true'>
+    <h4>Editing This Task</h4>
+    <form (submit)='componentEditTask()'>
+        <p>Title: <input type='text' name='editTask.title' [(ngModel)]='editTask.title' value='editTask.title'></p>
+        <p>Description: <input type='text' name='editTask.description' [(ngModel)]='editTask.description' value='editTask.description'></p>
+        <input type="submit" value="Edit Task">
+    </form>
+</div>
+<div *ngFor="let task of task">
+    <p>{{task.title}}</p>
+    <p>{{task.description}}</p>
+    <button (click)="componentGetSingleTask(task._id)">Edit</button>
+    <button (click)="componentDeleteTask(task._id)">Delete</button>
+</div>
+<!-- <button (click)="onButtonClick()" >Click me!</button> -->
+<!-- <button (click)="onButtonClickEvent()">Click me!</button> -->
+<!-- <button (click)="onButtonClickParam(5)">Click me!</button> -->
+<!-- <button (click)="onButtonClickParams(5, 'hello')">Click me!</button> -->
+<!-- <button (click)="onButtonClickEvent($event)">Click me!</button> -->
+<router-outlet></router-outlet>
