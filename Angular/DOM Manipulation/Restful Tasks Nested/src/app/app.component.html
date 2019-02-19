@@ -1,0 +1,27 @@
+<h1>Restful CRUD Tasks</h1>
+<form (submit)='componentToPost()'>
+    <p>{{newTask | json}}</p> <!--to see two-way binding in action-->
+    <p>Title: <input type="text" name='newTask.title' [(ngModel)]="newTask.title"></p> <!--don't forget to import and register formsModule in our app.module so that two-way binding is possible-->
+    <p>Description: <input type="text" name='newTask.description' [(ngModel)]="newTask.description"></p>
+    <input type="submit" value="Add Task">
+</form>
+<button (click)="componentGetTasksFromService()">Get All Tasks</button>
+
+
+<app-task *ngIf="myTask" [taskToShow] = "myTask"></app-task>
+<div *ngFor="let task of task">
+    <p>{{task.title}}</p>
+    <p>{{task.description}}</p>
+    <button (click)="taskToShow(task)">Show</button>
+</div>
+<!-- <div *ngFor="let task of task">
+    <p>{{task.title}}</p>
+    <p>{{task.description}}</p>
+    <button (click)="componentGetSingleTask(task._id)">Show</button>
+</div> -->
+<!-- <button (click)="onButtonClick()" >Click me!</button> -->
+<!-- <button (click)="onButtonClickEvent()">Click me!</button> -->
+<!-- <button (click)="onButtonClickParam(5)">Click me!</button> -->
+<!-- <button (click)="onButtonClickParams(5, 'hello')">Click me!</button> -->
+<!-- <button (click)="onButtonClickEvent($event)">Click me!</button> -->
+<router-outlet></router-outlet>
