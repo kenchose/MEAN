@@ -1,0 +1,7 @@
+<div id=cakeInfo>
+  <h2>Baked by {{cakeToShow.baker}}</h2>
+    <p *ngIf='cakeToShow.rating != 0'>Average Rating: {{cakeToShow.rating}}</p>
+    <ul *ngFor='let cake of cakes'>
+      <li >{{cakeToShow.image}}</li>
+    </ul>
+</div>

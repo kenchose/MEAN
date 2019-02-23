@@ -1,0 +1,40 @@
+.leftside {
+  display: inline-block;
+  width: 40%;
+  vertical-align: top;
+  border: 1px solid black;
+}
+
+.rightside {
+  display: inline-block;
+  width: 59%;
+  vertical-align: top;
+  border: 1px solid black;
+  overflow: auto;
+  height: 50%;
+}
+
+.rate-form {
+  display: inline-block;
+  vertical-align: top;
+}
+
+select {
+  display: block;
+}
+
+textarea {
+  display: block;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+img {
+  height: 150px;
+  width: 200px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+/*# sourceMappingURL=app.component.css.map */

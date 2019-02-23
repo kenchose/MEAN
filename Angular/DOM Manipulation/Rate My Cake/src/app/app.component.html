@@ -1,0 +1,30 @@
+<div class='leftside'>
+  <form (submit)='componentNewCake()'>
+    <u><h3>Add your new cake</h3></u>
+    <!-- <p>{{newCake | json}}</p> -->
+    <p>Baker: <input type="text" name='newCake.baker' [(ngModel)]='newCake.baker'></p>
+    <p>Image: <input type="text" name='newCake.image' [(ngModel)]='newCake.image'></p>
+    <input type="submit" value="Add Cake">
+  </form>
+</div>
+
+
+<div class='rightside' *ngFor='let cake of cakes'>
+  <button (click)='cakeToShow(cake)'><img src="{{cake.image}}"></button>
+  <div class='rate-form'>
+    <form (submit)='componentRateCake(cake._id)'>
+      <select name="rateCake.rating" [(ngModel)]='rateCake.rating'>
+        <option value="1" selected>1 Star</option>
+        <option value="2">2 Stars</option>
+        <option value="3">3 Stars</option>
+        <option value="4">4 Stars</option>
+        <option value="5">5 Stars</option>
+      </select>
+      <textarea name="rateCake.comment" [(ngModel)]='rateCake.comment'cols="20" rows="10"></textarea>
+      <input type='submit' value='Rate!!!'>
+    </form>
+  </div>
+  <!-- <img src="{{cake.image}}" alt="cake"> -->
+</div>
+
+<app-cake *ngIf='singleCake' [cakeToShow]='singleCake'></app-cake>
