@@ -11,6 +11,7 @@ module.exports = {
             }
         }).sort({_id: -1})
     },
+
     new: (req, res) => {
         let cake = new Cake(req.body);
         cake.save((err, savedCake) => {
@@ -21,32 +22,36 @@ module.exports = {
             }
         })
     },
+
     onlyOne: (req, res) => {
         id = req.params.id;
-        Cake.findById({_id: id}, (err, onlyOne) => {
+        Cake.findById({_id: id}, (err, oneCake) => {
             if (err) {
                 res.json('Cannot find cake', err);
             } else {
-                res.json('Found cake', onlyOne);
+                res.json('Found cake', oneCake);
             }
         })
     },
+
     addRating: (req, res) => {
         console.log(req.body);
-        id = req.params.id;
+        console.log(req.params.id)
         let rate = new Rate(req.body);
         rate.save((err, rateSaved) => {
-            if (err) {
+            if (err) { 
                 res.json({message: "Cannot save ratings.", err});
             } else {
-                Cake.findOneAndUpdate({_id: id}, {$push: {rateSaved}}, (err, saved) => {
+                Cake.findByIdAndUpdate(req.params.id, {ratings: rateSaved}, (err, saved) => {
                     if (err) {
                         res.json({message: "Couldn't update cake", err});
                     } else {
-                        res.json({message: "Successfully updated cake", saved});
+                        res.json({message: "Successfully updated cake"});
                     }
                 })
             }
         })
-    }
+    },
+
+    
 }
