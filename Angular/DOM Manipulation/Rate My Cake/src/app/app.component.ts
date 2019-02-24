@@ -14,11 +14,12 @@ export class AppComponent implements OnInit {
   constructor(private _httpService:HttpService){
     this.cakes = [];
     this.newCake = {baker:'', image:''};
-    this.rateCake = {rating:1, comment:''}
+    // this.rateCake = {rating:1, comment:''}
   }
   
   ngOnInit(){
     this.componentGetCakes();
+    this.rateCake = {rating:1, comment:''}
   }
 
   componentGetCakes(){
@@ -38,14 +39,17 @@ export class AppComponent implements OnInit {
     })
   }
 
-  componentRateCake(id){
+  componentRateCake(id){  
     // console.log(this.rateCake)
+    // console.log(id)
     let obs = this._httpService.serviceRateCake(id, this.rateCake);
     obs.subscribe(data => {
-      console.log('Cake rated', this.rateCake);
-      this.rateCake = {rating: '', comment:''};
+      // console.log('Cake rated', this.rateCake);
+      this.rateCake = {rating:1, comment:''}
+      this.componentGetCakes();
     })
   }
+
   cakeToShow(data){
     // console.log(data);
     this.singleCake = data
