@@ -20,10 +20,16 @@ export class HttpService {
   }
 
   serviceGetOne(id){
-    return this._http.get('/cakes'+id)
+    return this._http.get('/cakes/'+id)
   }
 
-  serviceRateCake(id, rating){
-    return this._http.post('/rating/cake'+id, rating)
+  serviceRateCake(id, rating){ 
+    return this._http.post('/cake/rate/'+id, rating)
   }
 }
+
+
+
+
+
+
