@@ -1,0 +1,56 @@
+// div {
+//     display: block;
+//     border: 1px solid black;
+//     // padding: 10px;
+//     // margin: 10px;
+//     // text-align: center;
+//     height: auto;
+//     float: left;
+//     width: 300px;
+// }
+
+.leftside {
+    display: inline-block;
+    width: 40%;
+    vertical-align: top;
+    border: 1px solid black;
+}
+
+.rightside {
+    width: 59%;
+    vertical-align: top;
+    border: 1px solid black;
+    overflow: auto;
+    height: 50%;
+}
+
+.rate-form {
+    display: inline-block;
+    vertical-align: top;
+}
+
+select {
+    display: block;
+}
+
+textarea {
+    display: block
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+img {
+    height: 200px;
+    width: 60%;
+    object-fit: contain;
+}
+
+// form {
+//     margin: 20px;
+//     border: 1px solid black;
+//     // display: inline-block;
+//     float: left;
+//     height: 100%;
+// }

@@ -1,0 +1,16 @@
+<div class="cakeInfo">
+  <h2>Baked by {{cakeToShow.baker}}</h2>
+  <img src="{{cakeToShow.image}}" alt="">
+</div>
+<div class='comm' *ngIf='cakeToShow.ratings != null'>
+  <div class='comments'>
+      <h3>Average rating: {{avgRating}}</h3>
+    <h3>Comments about the cake</h3>
+    <div *ngFor='let cake of cakeToShow.ratings'>
+      <p>{{cake.comment}}</p>
+      {{cake.rating}}
+    </div>
+  </div>
+</div>
+
+

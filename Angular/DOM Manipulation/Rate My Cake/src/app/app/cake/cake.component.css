@@ -1,0 +1,21 @@
+.cakeInfo {
+  display: inline-block;
+  border: 1px solid black;
+}
+
+.content {
+  display: inline-block;
+}
+
+.comments {
+  display: inline-block;
+  border: 1px solid black;
+  overflow-y: scroll;
+  height: 250px;
+}
+
+.comm {
+  vertical-align: top;
+  display: inline-block;
+}
+/*# sourceMappingURL=cake.component.css.map */
