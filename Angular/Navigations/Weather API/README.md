@@ -1,3 +1,9 @@
+# Objectives
+
+Use Angular routing to display different components
+
+Making http requests to an API and displaying the data received
+
 # Public
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.3.
