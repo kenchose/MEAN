@@ -24,36 +24,30 @@ let UserSchema = new mongoose.Schema({
     password: {
         type: String,
         required: [true, 'Must have a password'],
-        minlength: [8, 'Password must be at least 8 characters.'],
+        // minlength: [8, 'Password must be at least 8 characters.'],
+        validate: [{
+            validator: (value) => {
+                return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test( value );
+            }, message: 'Minimum eight characters, at least one letter, one number and one special character.'
+        }]
+    }, 
+    password_confirmation: {
+        type: String,
+        required: [true, 'Password confirmation is required.'],
         validate: {
             validator: (value) => {
-            return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{2,32}/.test( value );
-            }, message: 'Password must contain a number, special character, and uppsercase letter.'
+                if(value == this.password) {
+                    return value == this.password;
+                }
+            }, message: 'Password and password confirmation must match.'
         }
-    }, 
-    // password_confirmation: {
-    //     type: String,
-    //     required: [true, 'Password confirmation is required.'],
-    //     validate: [{
-    //         validator: (value) => {
-    //             return value == this.password;
-    //         }, message: 'Password and password confirmation must match.'
-    //     }]
-    // },
+    },
     birthday: {
         type: Date,
         required: [true, 'Please enter your birthday.']
     }
 }, {timestamps: true})
 
-UserSchema.methods.generateHash = (password) =>  {
-    return bcrypt.hashSync(password, bcrypt.genSaltSync(10))
-}
-// UserSchema.pre('save', (done) => {
-//     var hashedpw = bcrypt.hashSync(this.password, bcrypt.genSaltSync(8));
-//     this.password = hashedpw;
-//     this.password_confirm = undefined;
-//     done();
-// ;})
+// UserSchema.plugin(require('mongoose-bcrypt')); //this will automatically hash password
 UserSchema.plugin(uniqueValidator, {message:'Sorry, that email is already taken'});
 mongoose.model('User', UserSchema);

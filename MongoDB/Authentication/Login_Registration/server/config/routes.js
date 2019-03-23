@@ -1,7 +1,6 @@
 let users = require('../controllers/users.js')
 module.exports = (app) => {
     app.get('/', (req, res) => {
-        console.log('got online')
         users.index(req, res);
     })
                         
@@ -17,8 +16,9 @@ module.exports = (app) => {
         users.home(req, res);
     })
 
-    // app.get('/login', (req, res) => {
-    //     users.login(req, res);
-    // })
+    app.post('/logout', (req,res) => {
+        users.logout(req, res);
+    })
+
 }
 

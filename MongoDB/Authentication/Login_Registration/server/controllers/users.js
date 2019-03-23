@@ -16,36 +16,54 @@ module.exports = {
     },
 
     create: (req, res) => {
-        console.log("Creatred new user", req.body);
         let newUser = new User(req.body);
-        newUser.password = newUser.generateHash(newUser.password);
-        // req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10)) 
+        bcrypt.genSalt(10, (err, salt) => {
+            if (err) {
+                console.log(err);
+            } else {
+                bcrypt.hash(req.body.password, salt, (err, hash) => {
+                    newUser.password = hash
+                    console.log('New hash PW ==> ' + newUser.password);
+                });
+            }
+        }); 
         newUser.save((err) => {
             if (err) {
                 console.log('Cannot save new user', err);
-                for(var key in err.errors){
+                for(let key in err.errors){
                     req.flash('registration', err.errors[key].message);
                 }
                 res.redirect('/');
             } else {
+                console.log(newUser);
                 req.session.user_id = newUser._id
-                console.log(newUser._id);
+                req.session.first_name = newUser.first_name;
+                req.session.email = newUser.email;
                 res.render('home');
             }
         })
     },
 
-    // login: (req, res) => {
-    //     User.findOne({email: req.body.email, password: req.body.password}, (req, user) => {
-    //         console.log("req.body.email = " + req.body.email);
-    //         console.log("This is the dbuser.email response", user);
-    //         if (err) {
-    //             res.redirect('/');
-    //         } else {
-    //             req.session.user_id = user._id;
-    //             req.session.email = user.email;
-    //             res.render('home')
-    //         }
-    //     })
-    // }
+    login: (req, res) => {
+        User.findOne({email:req.body.email}, (err, user) => {
+            if (!user) {
+                console.log({message: 'This email is not registered!', err});
+                res.redirect('/')
+            } else {
+                bcrypt.compare(req.body.password, user.password, (err, result) => {
+                    if(result == true){
+                        res.render('home')
+                    } else {
+                        console.log(err)
+                        res.redirect('/')
+                    }
+                })
+            }
+        })
+    },
+
+    logout: (req, res) => {
+        req.session.destroy()
+        res.redirect('/')
+    }
 }
