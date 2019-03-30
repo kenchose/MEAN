@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NoteComponent } from './components/note/note.component';
 import { FormsModule } from '@angular/forms';
-// import { MomentModule } from ;
+
 
 @NgModule({
   declarations: [
