@@ -1,3 +1,3 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/anonymous_notes');
-require('./../models/user.js');
+mongoose.connect('mongodb://localhost/anonymouse_notes');
+require('./../models/note.js');

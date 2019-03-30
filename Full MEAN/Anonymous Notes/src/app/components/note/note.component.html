@@ -1,0 +1,21 @@
+<div class="container">
+  <form (submit)='addNote()' #formData='ngForm'>
+    <input type="text"
+    required
+    name='newNote.content'
+    [(ngModel)]='newNote.content'
+    #content="ngModel">
+    <button type="submit">Add Note</button>
+  </form>
+
+  <div class="display">
+    <div *ngFor='let note of notes'> 
+      <!-- <blockquote>Noted on: {{note.createdAt | date : "MMM d, y"  }}</blockquote> -->
+      <blockquote><span>Noted on:</span> {{note.createdAt | date : "fullDate"  }}</blockquote>
+      <h2>{{note.content}}</h2>
+      <h2>{{note.date}}</h2>
+      <h2>{{note.d}}</h2>
+    </div>
+  </div>
+</div>
+
