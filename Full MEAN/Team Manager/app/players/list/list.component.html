@@ -1,0 +1,15 @@
+<div *ngFor='let player of players'>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Preferred Position</th>
+            <th>Action</th>
+        </tr>
+        <tr>
+            <td>{{player.name}}</td>
+            <td>{{player.position}}</td>
+            <td><button (click)='deletePlayer(player._id)'>Delete Player</button></td>
+        </tr>
+    </table>
+</div>
+<router-outlet></router-outlet>
