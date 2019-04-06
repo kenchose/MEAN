@@ -1,10 +1,14 @@
-let user = require('./../controllers/users.js')
+let player = require('./../controllers/players.js')
 module.exports = (app) => {
     app.get('/players/list', (req, res) => {
-        user.all(req, res);
+        player.all(req, res);
     })
 
-    app.delete('/player/'+id, (req, res) => {
-        user.delete(req, res);
+    app.post('/create', (req, res) => {
+        player.addPlayer(req, res);
+    })
+
+    app.delete('/player/:id', (req, res) => {
+        player.delete(req, res);
     })
 }
