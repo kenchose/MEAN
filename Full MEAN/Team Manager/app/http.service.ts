@@ -8,8 +8,12 @@ export class HttpService {
 
   constructor(private _http:HttpClient) { }
 
-  serviceAllUsers(){
+  serviceAllPlayers(){
     return this._http.get('/players/list');
+  }
+  
+  serviceAddNewPlayer(player){
+    return this._http.post('/create', player)
   }
 
   serviceDeletePlayer(id){

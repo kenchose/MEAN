@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from './../../http.service';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-list',
@@ -9,23 +10,24 @@ import { HttpService } from './../../http.service';
 export class ListComponent implements OnInit {
 
   players = []
-  constructor(private _httpService:HttpService) { }
+  constructor(private _httpService:HttpService, private _router:Router) { }
 
   ngOnInit() {
-    this.allUsers();
+    this.allPlayers();
   }
 
-  allUsers(){
-    this._httpService.serviceAllUsers()
+  allPlayers(){
+    this._httpService.serviceAllPlayers()
     .subscribe(data => {
       this.players = data['players'];
     })
   }
 
-  deletePLayer(id){
+  deletePlayer(id){
     this._httpService.serviceDeletePlayer(id)
     .subscribe(data => {
-      this.allUsers();
+      this.allPlayers();
+      this._router.navigate(['/players/list'])
     })
   }
 

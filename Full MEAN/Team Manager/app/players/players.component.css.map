@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "players.component.sass"
+    ],
+    "names": [],
+    "file": "players.component.css"
+}
