@@ -4,7 +4,7 @@ module.exports = {
     all: (req, res) => {
         Player.find({}, (err, players) => {
             if (err) {
-                res.json({message:'Could not find users', err});
+                res.json({message:'Could not find players', err});
             } else {
                 res.json({message: 'Found all players', players});
             }
@@ -23,11 +23,12 @@ module.exports = {
     },
 
     delete: (req, res) => {
-        Player.remove({_id: req.params.id}, (err, player) => {
+        id = req.params.id;
+        Player.remove({_id: id}, (err, player) => {
             if (err) {
-                res.json({message:'Could not delete player', error: err});
+                res.json({message:'Could not delete player', err});
             } else {
-                res.json({success:"Successfully deleted player", player})
+                res.json({success: 'Successfully deleted player', player})
             }
         })
     }

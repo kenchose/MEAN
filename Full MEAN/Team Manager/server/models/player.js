@@ -9,8 +9,11 @@ let PlayerSchema = new mongoose.Schema({
         type:String,
         default:'Undecided'
     },
-    games:{
-        type: Object
+    game:{
+        type: Object,
+        game1: 'Undecided',
+        game2: 'Undecided',
+        game3: 'Undecided'
     }
 }, {timestamps:true});
 
