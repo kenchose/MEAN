@@ -1,0 +1,17 @@
+<div class='wrapper' >
+  <table>
+      <tr>
+          <th>Name</th>
+          <th>Preferred Position</th>
+          <th colspan="3">Actions</th>
+      </tr>
+      <tr *ngFor='let player of players'>
+          <td>{{player.name}}</td>
+          <td>{{player.position}}</td>
+          <td><button (click)="playerPlaying(player)">Playing</button></td>
+          <td><button (click)="playerNotPlaying(player)">Not Playing</button></td>
+          <td><button (click)="playerUndecided(player)">Undecided</button></td>
+      </tr>
+  </table>
+</div>
+<router-outlet></router-outlet>

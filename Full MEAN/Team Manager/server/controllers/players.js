@@ -22,30 +22,9 @@ module.exports = {
         })
     },
 
-    // updatePlayer: (req, res) => {
-    //     id = req.params.id
-    //     Player.findByIdAndUpdate({_id: id}, (err, player) => {
-    //         if (err) {
-    //             res.json({message: 'Sorry, there was an error finding player', error: err});
-    //         } else {
-    //             let playerUpdate = {
-    //                 game1: 'Playing'
-    //             }
-    //             Player.update({_id: req.params.id}, playerUpdate, {upsert: true}, (err) => {
-    //                 console.log('Player status', player)
-    //                 // if (err) {
-    //                 //     res.json({message: 'Sorry, there was an error updating this player', error: err});
-    //                 // } else {
-    //                 //     res.json({message: 'Player has been updated!', player: playerUpdate})
-    //                 // }
-    //             })
-            // }
-        // })
-    // },
-        updatePlayer: (req, res) => {
+    updatePlayerGame1: (req, res) => {
         id = req.params.id
         playing = req.params.playing
-        game = req.params.game
         console.log('id of new player', id, playing)
         Player.findById({_id: id}, (err, player) => {
             if (err) {
@@ -53,8 +32,29 @@ module.exports = {
             } else {
                 let playerUpdate = {
                     game1: playing,
+                }
+                Player.update({_id: req.params.id}, playerUpdate, {upsert: true}, (err) => {
+                    console.log('Player status', player)
+                    if (err) {
+                        res.json({message: 'Sorry, there was an error updating this player', error: err});
+                    } else {
+                        res.json({message: 'Player has been updated!', player: playerUpdate})
+                    }
+                })
+            }
+        })
+    },
+
+    updatePlayerGame2: (req, res) => {
+        id = req.params.id
+        playing = req.params.playing
+        console.log('id of new player', id, playing)
+        Player.findById({_id: id}, (err, player) => {
+            if (err) {
+                res.json({message: 'Sorry, there was an error finding player', error: err});
+            } else {
+                let playerUpdate = {
                     game2: playing,
-                    game3: playing
                 }
                 // Player.update({_id: req.params.id}, playerUpdate, {$set:{game1:[playerUpdate.game1]}}, (err) => {
                 Player.update({_id: req.params.id}, playerUpdate, {upsert: true}, (err) => {
@@ -69,6 +69,29 @@ module.exports = {
         })
     },
 
+    updatePlayerGame3: (req, res) => {
+        id = req.params.id
+        playing = req.params.playing
+        console.log('id of new player', id, playing)
+        Player.findById({_id: id}, (err, player) => {
+            if (err) {
+                res.json({message: 'Sorry, there was an error finding player', error: err});
+            } else {
+                let playerUpdate = {
+                    game3: playing,
+                }
+                // Player.update({_id: req.params.id}, playerUpdate, {$set:{game1:[playerUpdate.game1]}}, (err) => {
+                Player.update({_id: req.params.id}, playerUpdate, {upsert: true}, (err) => {
+                    console.log('Player status', player)
+                    if (err) {
+                        res.json({message: 'Sorry, there was an error updating this player', error: err});
+                    } else {
+                        res.json({message: 'Player has been updated!', player: playerUpdate})
+                    }
+                })
+            }
+        })
+    },
 
     delete: (req, res) => {
         id = req.params.id;

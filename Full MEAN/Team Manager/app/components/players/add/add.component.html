@@ -1,0 +1,25 @@
+<div class="wrapper">
+  <h2>Add Player</h2>
+  <form (submit)='addNewPlayer()' #formData="ngForm">
+    <p>Player Name: <input type="text"
+    required
+    name = 'player.name'
+    [(ngModel)] = 'player.name' 
+    minlength='2'
+    #name='ngModel'
+    ></p>
+    <div>
+    <span class="error" *ngIf="name.errors && (name.dirty || name.touched)">
+      <span *ngIf="name.errors.required"><i class="fas fa-times"></i> Name is required</span>
+      <span *ngIf="name.errors.minlength"><i class="fas fa-times"></i> Name must be at least 2 characters in length</span></span>
+    </div>
+    <p>Preferred Position: <select name="player.position" [(ngModel)]="player.position" #position='ngModel'>
+      <option value="Undecided">Undecided</option>
+      <option value="Forward">Forward</option>
+      <option value="Midfielder">Midfielder</option>
+      <option value="Goalkeeper">Goalkeeper</option>
+    </select></p>
+    <button type="submit" [disabled]='formData.invalid'>Add</button>
+  </form>
+</div>
+{{name.errors | json}}
