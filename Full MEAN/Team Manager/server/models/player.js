@@ -6,14 +6,19 @@ let PlayerSchema = new mongoose.Schema({
         minlength:[2, 'Name must be at least 2 characters.']
     },
     position:{
-        type:String,
-        default:'Undecided'
+        type:String
     },
-    game:{
-        type: Object,
-        game1: 'Undecided',
-        game2: 'Undecided',
-        game3: 'Undecided'
+    game1:{
+        type:String,
+        default:'Undefined'
+    },
+    game2:{
+        type:String,
+        default: 'Undefined'
+    },
+    game3:{
+        type:String,
+        default:'Undefined'
     }
 }, {timestamps:true});
 

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpService } from './http.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,12 +25,14 @@ import { Game3Component } from './components/status/game3/game3.component';
     Game1Component,
     Game2Component,
     Game3Component,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [HttpService],
   bootstrap: [AppComponent]

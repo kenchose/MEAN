@@ -8,6 +8,10 @@ module.exports = (app) => {
         player.addPlayer(req, res);
     })
 
+    app.put('/player/:playing/:id', (req, res) => {
+        player.updatePlayer(req, res);
+    })
+
     app.delete('/player/:id', (req, res) => {
         player.delete(req, res);
     })

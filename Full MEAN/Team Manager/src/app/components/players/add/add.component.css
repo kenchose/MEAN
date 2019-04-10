@@ -8,4 +8,14 @@ form {
   border: 1px solid red;
   padding: 10px;
 }
+
+form button {
+  background-color: green;
+  color: white;
+  font-weight: 500;
+}
+
+.error {
+  color: red;
+}
 /*# sourceMappingURL=add.component.css.map */

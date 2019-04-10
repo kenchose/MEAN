@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from './../../../http.service'
 
 @Component({
   selector: 'app-game3',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Game3Component implements OnInit {
 
-  constructor() { }
+  players = [];
+  constructor(private _httpService:HttpService) { }
 
   ngOnInit() {
+    this.allPlayers();
+  }
+
+  allPlayers(){
+    this._httpService.serviceAllPlayers()
+    .subscribe(data => {
+      this.players = data['players'];
+      console.log(this.players)
+    })
   }
 
 }

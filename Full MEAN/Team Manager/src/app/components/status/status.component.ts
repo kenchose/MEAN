@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./status.component.sass']
 })
 export class StatusComponent implements OnInit {
-  game:Number
+  game:Number = 1
   constructor() { }
 
   ngOnInit() {

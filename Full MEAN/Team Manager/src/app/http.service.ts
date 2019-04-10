@@ -19,4 +19,8 @@ export class HttpService {
   serviceDeletePlayer(player){
     return this._http.delete('/player/'+player._id)
   }
+
+  gamePlaying(player, playing){
+    return this._http.put('/player/'+playing+'/'+player._id, player, playing);
+  }
 }

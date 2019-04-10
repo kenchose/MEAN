@@ -2,8 +2,8 @@
     "version": 3,
     "mappings": "AAAA,AAAA,KAAK,EAAG,EAAE,EAAE,EAAE,CAAC;EACX,MAAM,EAAE,eAAe;EACvB,eAAe,EAAE,QAAQ;CAAG;;AAEhC,AAAA,EAAE,EAAE,EAAE,CAAC;EACH,OAAO,EAAE,IAAI;EACb,UAAU,EAAE,MAAM;CAAG;;AAEzB,AAAA,MAAM,CAAC;EACH,gBAAgB,EAAE,GAAG;CAAG",
     "sources": [
-        "list.component.sass"
+        "game1.component.sass"
     ],
     "names": [],
-    "file": "list.component.css"
+    "file": "game1.component.css"
 }

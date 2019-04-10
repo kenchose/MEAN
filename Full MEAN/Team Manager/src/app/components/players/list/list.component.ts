@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../../http.service';
 import { Router } from '@angular/router'
+import { fade } from './../../../animations/fade';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.sass']
+  styleUrls: ['./list.component.sass'],
+  animations: [
+    fade
+  ]
 })
 export class ListComponent implements OnInit {
   delete: any
@@ -32,7 +36,7 @@ export class ListComponent implements OnInit {
         this.allPlayers();
         this._router.navigate(['/players/list']);
     })} else {
-        this._router.navigate(['/players/add'])
+        this._router.navigate(['/players/list'])
     }
   }
 
